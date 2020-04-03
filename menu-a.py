@@ -92,7 +92,7 @@ PLEASE ENTER THE TASK""",end=" :")
             if x==0:
                 print("SUCCESSFULLY COMPLETED INSTALLING HTTPD!!")
             loc=input("please ENTER the location of website files :")
-            os.system("cp -r {}/* /var/www/html")
+            os.system("cp -r {}/* /var/www/html".format(loc))
             os.system("systemctl stop firewalld")
             os.system("systemctl start httpd")
 
