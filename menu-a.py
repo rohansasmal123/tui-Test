@@ -83,15 +83,19 @@ PLEASE ENTER THE TASK :""",end="")
 
 PLEASE ENTER THE TASK""",end=" :")
         c=int(input())
-
+        print()
         if c==1:
             os.system("date")
 
         elif c==3:
-            x=os.system("yum install httpd -y")
-            if x==0:
-                print("SUCCESSFULLY COMPLETED INSTALLING HTTPD!!")
-            loc=input("please ENTER the location of website files :")
+            y=os.system("rpm -q httpd")
+            if y!=0:
+                x=os.system("yum install httpd -y")
+                if x==0:
+                    print("SUCCESSFULLY COMPLETED INSTALLING HTTPD!!")
+            else:
+                print("httpd module already exists !!!")
+            loc=input("\nplease ENTER the location of website files :")
             os.system("cp -r {}/* /var/www/html".format(loc))
             os.system("systemctl stop firewalld")
             os.system("systemctl start httpd")
@@ -112,6 +116,7 @@ PLEASE ENTER THE TASK""",end=" :")
         elif c==0:
             input("press enter to continue")
             os.system("clear")
+            exit()
 
 
 
@@ -121,3 +126,4 @@ PLEASE ENTER THE TASK""",end=" :")
 
     else :
         print("INVALID INPUT")
+
